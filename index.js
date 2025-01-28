@@ -6,7 +6,7 @@ import authRoutes from './routes/auth.js'; // Add `.js` extension for ES Modules
 import adminRoutes from './routes/adminRoutes.js'; // Add `.js` extension for ES Modules
 import AdminSign from './routes/adminSign.js'; // Add `.js` extension for ES Modules
 import UserSign from './routes/userSign.js'; // Add `.js` extension for ES Modules
-import { MONGO_URI, PORTS } from './envfile.js';
+import {  PORTS } from './envfile.js';
 dotenv.config();
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(cors({
     // credentials: true, // Allow credentials (cookies, etc.)
 }));
 app.use(express.json());
-mongoose.connect(`${MONGO_URI}`, {
+mongoose.connect(`${process.env.MONGO_URI}`, {
     serverSelectionTimeoutMS: 30000,  // Time to wait for MongoDB to select a server (5 seconds)
 })
     .then(() => console.log('MongoDB connected'))
